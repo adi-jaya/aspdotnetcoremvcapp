@@ -125,6 +125,127 @@ else
 
 ---
 
+# Clone Project
+
+## Prerequisites
+
+Ensure the following tools and SDKs are installed on your machine:
+
+* **C# Dev Kit for Visual Studio Code**: Enhances Visual Studio Code with C# support.
+* **.NET 9 SDK**: Required for building and running the project.
+
+## Getting Started
+
+### Clone the Repository
+
+Clone the repository to your local machine:
+
+```bash
+git clone <repository_url>
+```
+
+### Generate Build and Debug Assets
+
+1. Open the project in **Visual Studio Code**.
+2. Open **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS).
+3. Search for `.NET: Generate Assets for Build and Debug` and select it.
+4. This will generate a `.vscode` folder with the necessary configuration files (`launch.json`, `tasks.json`).
+
+### Trust the HTTPS Development Certificate
+
+For secure local development with HTTPS:
+
+```bash
+dotnet dev-certs https --trust
+```
+
+### Restore Dependencies
+
+Install all required packages for the project:
+
+```bash
+dotnet restore
+```
+
+## Running the Application
+
+To run the application:
+
+```bash
+dotnet run
+```
+
+## Managing Packages
+
+### List Installed Packages
+
+View all packages installed in the project:
+
+```bash
+dotnet list package --project
+```
+
+### Add New Packages
+
+Install additional NuGet packages as needed:
+
+```bash
+dotnet add package <package_name>
+```
+
+## Managing .NET Tools
+
+### Check Installed Tools
+
+View globally installed .NET tools:
+
+```bash
+dotnet tool list --global
+```
+
+### Install EF Core and ASP.NET Scaffolding Tools
+
+Install or update the following tools for database migrations and scaffolding:
+
+```bash
+dotnet tool uninstall --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-aspnet-codegenerator
+
+dotnet tool uninstall --global dotnet-ef
+dotnet tool install --global dotnet-ef
+```
+
+### Configure Tool Path (macOS/Linux Only)
+
+Add the tools to your `PATH`:
+
+```bash
+export PATH=$HOME/.dotnet/tools:$PATH
+```
+
+## Using Scaffolding Tool
+
+Generate Create, Read, Update, and Delete (CRUD) pages for your models. Example for a `Movie` model:
+
+```bash
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc AppDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+```
+
+## Database Migrations
+
+### Apply Migrations
+
+To ensure your database schema matches the EF Core model, apply migrations:
+
+```bash
+dotnet ef database update
+```
+
+---
+
+For further assistance, refer to the [Microsoft Documentation](https://learn.microsoft.com/aspnet/core/).
+
+
 ## Additional Information
 - For more details about ASP.NET Core and Entity Framework Core, refer to the official Microsoft documentation.
 - If you encounter any issues, check your environment setup and review the steps above.
